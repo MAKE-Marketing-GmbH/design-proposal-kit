@@ -13,7 +13,8 @@ bundles/<direction-slug>/
 ├── 00-PASTE-ME.txt         the job block, ready to paste
 ├── PROMPT.md               the full reasoning: facts, palette, exclusions
 ├── INDEX.md                sources, assets, rights, status
-├── assets/                 cleared reference images, logos, screenshots
+├── references/             style references + their cards, attached to the chat
+├── assets/                 cleared client material: logo, real photos
 └── images/                 THE INBOX: generated images come back in here
 ```
 
@@ -45,13 +46,25 @@ Then, from the repo root:
 ./scripts/stack-direction.sh -c 72 bundles/<direction-slug>
 ```
 
+## references/
+
+The style references this direction is built on, plus a reference card for each.
+See `style-references.md` for how to pick them and what a card contains.
+
+These images get **attached to the chat** alongside the job block. A model shown
+an example lands far closer than a model told about one in words.
+
+They never go into the client-facing PDF. Somebody else's website in a commercial
+document you send a client is a rights problem.
+
 ## Paste order
 
 One fresh chat per direction. Exactly two pastes:
 
 1. **`01-SYSTEM-PROMPT.md`**: the whole file, always first. It sets the rules:
-   one image per section, no browser chrome, one palette across the set.
-2. **`00-PASTE-ME.txt`**: the job block for this direction.
+   one image per section, 16:9, no browser chrome, one palette across the set.
+2. **`00-PASTE-ME.txt`**: the job block for this direction, **with everything in
+   `references/` attached to the same message**.
 
 Without paste 1 the model uses its own defaults and the sections drift apart in
 colour, type and framing. `00-PASTE-ME.txt` says at the top which file comes

@@ -124,6 +124,7 @@ default is deliberately plain so it does not look like someone else's deck.
 SKILL.md                                  the workflow, as an agent skill
 prompts/section-mockup-system-prompt.md   paste 1 in every image chat
 reference/bundle-format.md                what a bundle contains, and the inbox
+reference/style-references.md             the eight styles and where to find them
 reference/pdf-structure.md                page order and CSS classes
 templates/proposal-base.css               tokens and components
 templates/proposal-starter.html           skeleton to copy

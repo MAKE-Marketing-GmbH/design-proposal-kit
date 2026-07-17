@@ -55,18 +55,31 @@ which direction.
 2. **Decide the sitemap.** Which pages, and which sections per page. If the
    brief does not say, ask. Do not guess a sitemap and present it as fact.
 
-3. **Name the directions.** Default is three (A/B/C). Each gets a short name that
+3. **Find references.** A direction built on taste alone is a guess. Pick a style
+   per direction and pull two or three real examples from the standing tag pages
+   in `reference/style-references.md`. Rules that matter:
+   - **Style beats industry.** International is welcome. A moving company can be
+     shown a Japanese furniture shop.
+   - Never the client's competitors as the style reference. Their current site is
+     a **fact** source only.
+   - Search wide, keep few. Each keeper gets a reference card.
+   - Screenshot them into `bundles/<slug>/references/`. They get attached to the
+     image chat. They never go in the client PDF.
+
+4. **Name the directions.** Default is three (A/B/C). Each gets a short name that
    names the thing, plus one or two sentences of character. "Warm and playful:
-   cream, a serif, hand-drawn marks" beats "Direction A: modern and clean".
+   cream, a serif, hand-drawn marks" beats "Direction A: modern and clean". One
+   of the three should be a deliberate outlier.
 
-4. **Write one bundle per direction**, plus its empty `images/` inbox. Format:
+5. **Write one bundle per direction**, plus its empty `images/` inbox. Format:
    `reference/bundle-format.md`. Each bundle is self-contained: the system
-   prompt, the job block, the full prompt, an index of what was used.
+   prompt, the job block, the full prompt, the references, an index.
 
-5. **Stop and hand over.** Tell the person, per direction:
+6. **Stop and hand over.** Tell the person, per direction:
    - which folder the bundle is in
    - that paste 1 is `01-SYSTEM-PROMPT.md`, whole file, in a **fresh** chat
-   - that paste 2 is `00-PASTE-ME.txt`
+   - that paste 2 is `00-PASTE-ME.txt`, **with the images in `references/`
+     attached to the same message**
    - how many images to expect back
    - where to drop them: `bundles/<slug>/images/`, named `1-hero.png` and so on
 
@@ -74,14 +87,14 @@ which direction.
 
 ## Phase 2: build the PDF
 
-6. **Check the inboxes.** Every direction needs the same number of images. If one
+7. **Check the inboxes.** Every direction needs the same number of images. If one
    is short, say which and stop. Do not build a proposal with a half direction.
 
-7. **Look at the images first.** One section each, no browser chrome, no burned-in
-   labels, palette consistent within a direction. A bad image caught here costs a
-   re-prompt. Caught after the PDF, it costs the whole page.
+8. **Look at the images first.** One section each, **16:9**, no browser chrome, no
+   burned-in labels, palette consistent within a direction. A bad image caught
+   here costs a re-prompt. Caught after the PDF, it costs the whole page.
 
-8. **Stack each direction.**
+9. **Stack each direction.**
 
    ```bash
    # measure the repeated nav once, on any non-hero section
@@ -90,11 +103,11 @@ which direction.
    ./scripts/stack-direction.sh -c 72 bundles/<slug>
    ```
 
-9. **Build the PDF.** Copy `templates/proposal-starter.html`, fill it in, then
-   `node scripts/render-pdf.cjs your-proposal.html`. Page order and the available
-   CSS classes are in `reference/pdf-structure.md`.
+10. **Build the PDF.** Copy `templates/proposal-starter.html`, fill it in, then
+    `node scripts/render-pdf.cjs your-proposal.html`. Page order and the
+    available CSS classes are in `reference/pdf-structure.md`.
 
-10. **Check every page of the PDF.** Not the HTML. The PDF.
+11. **Check every page of the PDF.** Not the HTML. The PDF.
 
 ---
 
@@ -142,6 +155,7 @@ which direction.
 ```
 prompts/section-mockup-system-prompt.md   paste 1 in every image chat
 reference/bundle-format.md                what a bundle contains, and the inbox
+reference/style-references.md             the eight styles and where to find them
 reference/pdf-structure.md                page order and CSS classes
 templates/proposal-base.css               tokens and components
 templates/proposal-starter.html           skeleton to copy
