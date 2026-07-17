@@ -1,0 +1,24 @@
+{
+  "name": "design-proposal-kit",
+  "version": "0.1.0",
+  "description": "Turn a client brief into a design proposal PDF: prompt bundles for section mockups, stacking, and an A4 render.",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "render": "node scripts/render-pdf.cjs",
+    "example": "npm run example:images && npm run example:stack && npm run example:pdf",
+    "example:images": "node example/make-demo-sections.cjs",
+    "example:stack": "for d in warm-and-playful bright-and-photographic bold-and-colourful; do ./scripts/stack-direction.sh -c 76 example/bundles/$d || exit 1; done",
+    "example:pdf": "node scripts/render-pdf.cjs example/proposal.html"
+  },
+  "keywords": [
+    "design-proposal",
+    "pdf",
+    "mockup",
+    "prompt-bundle",
+    "agent-skill"
+  ],
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}

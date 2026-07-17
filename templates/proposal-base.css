@@ -1,0 +1,174 @@
+/* ============================================================
+   design-proposal-kit: base stylesheet for A4 proposal PDFs
+   Neutral by default. Override the tokens in :root to brand it.
+   Render: node scripts/render-pdf.cjs <file.html>
+   ============================================================ */
+
+/* ---- TOKENS ----
+   Everything brand-specific lives here. Change these, not the rules below.
+   To use custom fonts, drop the files next to your HTML and add @font-face
+   rules, then point --font-head / --font-body at them. */
+:root{
+  --ink:#1A1A1A;           /* headings, strong text */
+  --ink-soft:#3A3A3A;
+  --body:#54514C;          /* body copy */
+  --paper:#FAFAF8;         /* page background */
+  --paper-2:#FFFFFF;       /* cards */
+  --paper-3:#F4F2EE;       /* subtle alternate page */
+  --muted:#8A857D;         /* kickers, footers */
+  --line:#E3DFD8;          /* hairlines */
+  --accent:#1F5C4A;        /* the one accent colour, change this first */
+  --accent-ink:#FFFFFF;    /* text on accent */
+
+  --font-head:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-body:"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+  /* Type scale. Consistent across every page. */
+  --fs-display:88px;
+  --fs-h1:48px;
+  --fs-h2:30px;
+  --fs-h3:19px;
+  --fs-lead:15px;
+  --fs-body:13px;
+  --fs-small:11px;
+}
+
+/* ---- RESET / PAGE ---- */
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+@page{size:A4;margin:0;}
+body{font-family:var(--font-body);color:var(--ink);background:var(--paper);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;font-weight:400;}
+.page{position:relative;width:210mm;min-height:297mm;padding:16mm 17mm 14mm;
+  display:flex;flex-direction:column;background:var(--paper);overflow:hidden;
+  page-break-after:always;}
+.page:last-child{page-break-after:auto;}
+.page.warm{background:var(--paper-3);}
+.page.dark{background:var(--ink);color:#EDEAE3;}
+
+/* ---- BRAND BAR (kicker left, logo right) ---- */
+.brandbar{display:flex;justify-content:space-between;align-items:center;}
+.kicker{font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:0.22em;font-size:10.5px;color:var(--muted);}
+.logo{height:26px;width:auto;display:block;}
+.logo-text{font-family:var(--font-head);font-weight:700;font-size:20px;
+  letter-spacing:0.02em;color:var(--accent);text-transform:uppercase;}
+
+/* ---- HEADINGS ---- */
+.display,.h1,.h2,.h3{font-family:var(--font-head);font-weight:700;
+  text-transform:uppercase;margin:0;color:var(--ink);letter-spacing:0.005em;}
+.display{font-size:var(--fs-display);line-height:0.90;}
+.h1{font-size:var(--fs-h1);line-height:0.96;}
+.h2{font-size:var(--fs-h2);line-height:1.02;letter-spacing:0.01em;}
+.h3{font-size:var(--fs-h3);line-height:1.12;letter-spacing:0.015em;}
+.display .accent,.h1 .accent,.h2 .accent,.h3 .accent{color:var(--accent);}
+
+/* ---- LABELS ---- */
+.eyebrow{font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:0.2em;font-size:12px;color:var(--accent);margin-bottom:14px;}
+
+/* ---- BODY ---- */
+.lead{font-family:var(--font-body);font-weight:400;font-size:var(--fs-lead);
+  line-height:1.6;color:var(--body);margin:0;max-width:150mm;}
+p{font-family:var(--font-body);font-weight:400;font-size:var(--fs-body);
+  line-height:1.6;color:var(--body);}
+.small{font-size:var(--fs-small);line-height:1.55;color:var(--muted);}
+b,strong{font-weight:600;color:var(--ink);}
+.accent{color:var(--accent);}
+
+/* ---- RULES ---- */
+.rule{height:3px;width:60px;background:var(--accent);border:0;margin:0;}
+.hr{border:0;border-top:1px solid var(--line);margin:0;}
+
+/* ---- NOTE BOX ---- */
+.note{border-left:4px solid var(--accent);background:var(--paper-2);
+  padding:6mm 7mm;box-shadow:0 1px 0 var(--line);}
+.note .lab{font-family:var(--font-body);font-weight:600;font-size:13px;
+  color:var(--ink);margin:0 0 6px;}
+.note p{margin:0;}
+
+/* ---- PILLS ---- */
+.pills{display:flex;flex-wrap:wrap;gap:9px;}
+.pill{border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+  font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:0.12em;font-size:10px;color:var(--ink-soft);}
+.pill.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+
+/* ---- STEPS ---- */
+.steps{display:grid;gap:6mm;}
+.step{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:start;}
+.num{font-family:var(--font-head);font-weight:700;font-size:30px;line-height:1;
+  color:var(--accent);padding-top:1px;}
+.num.circle{width:38px;height:38px;border-radius:50%;background:var(--accent);
+  color:var(--accent-ink);font-size:19px;line-height:38px;text-align:center;padding:0;}
+.step .t{font-family:var(--font-body);font-size:13px;line-height:1.55;
+  color:var(--body);padding-top:6px;}
+.step .t b{color:var(--ink);}
+.step .h3{margin-bottom:3px;}
+
+/* ---- PANEL / CALLOUT ---- */
+.panel{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;
+  padding:6mm 7mm;}
+.callout{background:var(--accent);color:var(--accent-ink);border-radius:12px;
+  padding:6mm 7mm;}
+.callout .h3{color:var(--accent-ink);}
+.callout p{color:var(--accent-ink);opacity:0.95;}
+
+/* ---- SITEMAP PAGES ---- */
+.sm-grid{display:grid;grid-template-columns:1fr 1fr;gap:9mm 12mm;margin-top:6mm;}
+.sm-phead{display:flex;align-items:baseline;gap:9px;border-bottom:1px solid var(--line);
+  padding-bottom:6px;margin-bottom:10px;}
+.sm-pnum{font-family:var(--font-head);font-weight:700;font-size:23px;
+  color:var(--accent);line-height:1;}
+.sm-pname{font-family:var(--font-head);font-weight:700;text-transform:uppercase;
+  font-size:22px;line-height:1;letter-spacing:.01em;color:var(--ink);}
+.sm-secgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 12mm;margin-top:8mm;}
+.sm-sec{display:grid;grid-template-columns:16px 1fr;gap:8px;margin-bottom:9px;
+  align-items:baseline;}
+.sm-snum{font-family:var(--font-head);font-weight:700;font-size:13px;
+  color:var(--accent);line-height:1.2;}
+.sm-sn{font-family:var(--font-head);font-weight:700;text-transform:uppercase;
+  font-size:14px;letter-spacing:.02em;color:var(--ink);line-height:1.2;}
+.sm-sd{font-family:var(--font-body);font-weight:400;font-size:11px;
+  color:var(--body);line-height:1.4;margin-top:1px;}
+.sm-note{font-family:var(--font-body);font-size:11px;color:var(--muted);margin-top:7mm;}
+
+/* ---- DIRECTIONS ---- */
+.dirs{display:grid;gap:6mm;margin-top:9mm;}
+.dir{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;}
+.dir .l{font-family:var(--font-head);font-weight:700;font-size:38px;
+  line-height:.85;color:var(--accent);}
+.dir .dn{font-family:var(--font-head);font-weight:700;text-transform:uppercase;
+  font-size:22px;letter-spacing:.01em;color:var(--ink);line-height:1.05;}
+.dir .dd{font-family:var(--font-body);font-weight:400;font-size:12.5px;
+  color:var(--body);line-height:1.5;margin-top:4px;}
+
+/* ---- VARIANT MOCKUP PAGES ---- */
+.vpage{height:297mm;}
+.vlabel{margin-top:7mm;}
+.vshot{flex:1;min-height:0;display:flex;align-items:flex-start;justify-content:center;
+  margin-top:5mm;}
+.vshot img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  border-radius:6px;border:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+
+/* ---- SECTION CALLOUT (single section + caption) ---- */
+.secshot{margin-top:6mm;border-radius:6px;border:1px solid var(--line);
+  overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+.secshot img{width:100%;height:auto;display:block;}
+.seccap{font-family:var(--font-body);font-size:11px;color:var(--body);margin-top:4mm;}
+.seccap b{color:var(--ink);}
+.seccap .n{color:var(--accent);font-weight:700;}
+
+/* ---- FOOTER ---- */
+.foot{margin-top:auto;padding-top:6mm;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:8mm;}
+.foot span{font-family:var(--font-body);font-weight:600;text-transform:uppercase;
+  letter-spacing:0.16em;font-size:10px;color:var(--muted);}
+
+/* ---- COVER ---- */
+.cover-center{margin-top:auto;}
+.cover-meta{margin-top:9mm;}
+
+/* ---- PAGE NUMBER ---- */
+.pageno{position:absolute;bottom:8mm;right:17mm;font-family:var(--font-body);
+  font-weight:600;font-size:10px;letter-spacing:0.1em;color:var(--muted);}

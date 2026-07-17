@@ -1,0 +1,34 @@
+Paste 01-SYSTEM-PROMPT.md into a fresh chat FIRST, then this block.
+
+Website: Northwind Coffee Roasters, a small batch coffee roastery
+Direction: Warm and playful, cream paper, a serif headline, soft corners. Reads
+  like a neighbourhood place that has been there a while.
+Palette: paper #F6EFE4, ink #2E241C, body text #6B5B4B, accent #B4552D
+Type: serif headlines with real character / plain sans body
+Language: English
+
+Generate 3 images, one per section:
+
+1. Hero. Nav with: Beans, Our roastery, Wholesale, Visit, and an "Order beans"
+   button. Eyebrow "Roasted in small batches since 2011". Headline "Coffee that
+   tastes like somewhere." Subline "We buy from farms we have visited, roast in
+   batches of twelve kilos, and ship the week it is roasted." Buttons "Order
+   beans" and "Visit the roastery". One wide photo of the roastery below.
+
+2. The beans. Eyebrow "What we are roasting now". Headline "Three beans. Changed
+   when the season changes." Three cards, each a photo plus name plus tasting
+   note:
+   - Ethiopia · Guji, "Peach, jasmine, black tea. Light roast."
+   - Colombia · Huila, "Cocoa, red apple, brown sugar. Medium."
+   - Sumatra · Aceh, "Cedar, molasses, tobacco. Dark roast."
+
+3. Visit. Eyebrow "Come by". Headline "The roastery is open on Saturdays."
+   Body "We roast Tuesday to Friday and open the door on Saturday morning. Come
+   taste what came off the drum that week. No booking, no fee." Button "Find us".
+
+Never show: prices, phone numbers, an address, star ratings, award badges, press
+logos, social media icons, or any text not written above. No people's faces. No
+opening hours beyond the word "Saturdays".
+
+When the images come back, drop them in this bundle's images/ folder as
+1-hero.png, 2-beans.png, 3-visit.png.
