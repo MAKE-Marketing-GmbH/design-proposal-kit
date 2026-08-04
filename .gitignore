@@ -1,12 +1,3 @@
 node_modules/
-*.log
+dist/
 .DS_Store
-
-# Render previews and ruler overlays are throwaway.
-_proposal-preview.png
-*-ruler.png
-
-# The example's inbox images are the intermediate step: `npm run example`
-# regenerates them. The stacked pages ARE committed, so example/proposal.html
-# and example/proposal.pdf both work straight after a clone.
-example/bundles/*/images/
